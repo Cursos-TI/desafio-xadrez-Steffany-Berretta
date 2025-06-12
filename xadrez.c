@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 
-// Este programa simula os movimentos de peças de xadrez usando loops.
+// Simula movimentos de peças de xadrez usando estruturas de repetição
 // Nível Novato: Torre, Bispo, Rainha
-// Nível Aventureiro: Cavalo (movimento em L usando loops aninhados)
+// Nível Aventureiro: Cavalo com loops aninhados e interação com o usuário
 
 int main() {
     // Constantes de movimento
@@ -10,11 +11,13 @@ int main() {
     const int movimento_bispo = 5;
     const int movimento_rainha = 8;
 
+    // Movimento da Torre (for)
     printf("\nMovimento da Torre - Direita:\n");
     for (int i = 0; i < movimento_torre; i++) {
         printf("Direita\n");
     }
 
+    // Movimento do Bispo (while)
     printf("\nMovimento do Bispo - Diagonal Superior Direita:\n");
     int contador_bispo = 0;
     while (contador_bispo < movimento_bispo) {
@@ -22,6 +25,7 @@ int main() {
         contador_bispo++;
     }
 
+    // Movimento da Rainha (do-while)
     printf("\nMovimento da Rainha - Esquerda:\n");
     int contador_rainha = 0;
     do {
@@ -29,27 +33,29 @@ int main() {
         contador_rainha++;
     } while (contador_rainha < movimento_rainha);
 
-    // Nível Aventureiro - Movimento do Cavalo em L
-    // O cavalo se move em L: duas casas numa direção e uma perpendicular
-    // Simularemos 4 movimentos diferentes para baixo e esquerda
+    // Nível Aventureiro - Movimento do Cavalo com interação do usuário
+    printf("\n--- Movimento do Cavalo Personalizado ---\n");
 
-    printf("\nMovimento do Cavalo - L para Baixo e Esquerda:\n");
+    int movimentos_l = 1;
+    for (int m = 0; m < movimentos_l; m++) {
+        char direcao1[10], direcao2[10];
 
-    for (int i = 0; i < 2; i++) { // movimento para baixo (2 casas)
-        printf("Baixo\n");
-    }
+        printf("\nDigite a primeira direção (ex: Cima, Baixo): ");
+        scanf("%s", direcao1);
 
-    int l = 0;
-    while (l < 1) { // movimento para esquerda (1 casa)
-        printf("Esquerda\n");
-        l++;
-    }
+        printf("Digite a segunda direção (ex: Direita, Esquerda): ");
+        scanf("%s", direcao2);
 
-    printf("\nOutro movimento em L do Cavalo - com loops aninhados:\n");
-    for (int i = 0; i < 2; i++) {
-        printf("Baixo\n");
-        for (int j = 0; j < 1; j++) {
-            printf("Esquerda\n");
+        printf("\nMovimento do Cavalo - L formado por 2 passos em %s e 1 passo em %s:\n", direcao1, direcao2);
+
+        for (int i = 0; i < 2; i++) {
+            printf("%s\n", direcao1);
+        }
+
+        int j = 0;
+        while (j < 1) {
+            printf("%s\n", direcao2);
+            j++;
         }
     }
 
