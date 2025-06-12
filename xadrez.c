@@ -1,63 +1,58 @@
 #include <stdio.h>
 #include <string.h>
 
-// Simula movimentos de peças de xadrez usando estruturas de repetição
-// Nível Novato: Torre, Bispo, Rainha
-// Nível Aventureiro: Cavalo com loops aninhados e interação com o usuário
+// Simula movimentos de peças de xadrez
+// Torre, Bispo, Rainha com recursividade; Cavalo com loops complexos
+
+// Função recursiva para mover a Torre 5 casas para a direita
+void moverTorre(int casas) {
+    if (casas == 0) return;
+    printf("Direita\n");
+    moverTorre(casas - 1);
+}
+
+// Função recursiva para mover a Rainha 8 casas para a esquerda
+void moverRainha(int casas) {
+    if (casas == 0) return;
+    printf("Esquerda\n");
+    moverRainha(casas - 1);
+}
+
+// Função recursiva e com loops aninhados para mover o Bispo 5 casas na diagonal superior direita
+void moverBispo(int linha, int coluna, int max) {
+    if (linha >= max) return;
+    for (int c = coluna; c < coluna + 1; c++) {
+        printf("Cima Direita\n");
+    }
+    moverBispo(linha + 1, coluna + 1, max);
+}
+
+// Movimento complexo do Cavalo: 2 para cima, 1 para a direita com break e continue
+void moverCavalo() {
+    printf("\nMovimento do Cavalo - Em L (2 Cima, 1 Direita):\n");
+    for (int i = 0; i < 3; i++) {
+        if (i == 2) {
+            for (int j = 0; j < 1; j++) {
+                printf("Direita\n");
+            }
+            break; // encerra o movimento
+        }
+        if (i == 1) continue; // ignora a segunda iteração como exemplo de uso
+        printf("Cima\n");
+    }
+}
 
 int main() {
-    // Constantes de movimento
-    const int movimento_torre = 5;
-    const int movimento_bispo = 5;
-    const int movimento_rainha = 8;
+    printf("\nMovimento da Torre - Direita (recursivo):\n");
+    moverTorre(5);
 
-    // Movimento da Torre (for)
-    printf("\nMovimento da Torre - Direita:\n");
-    for (int i = 0; i < movimento_torre; i++) {
-        printf("Direita\n");
-    }
+    printf("\nMovimento do Bispo - Diagonal Superior Direita (recursivo + loop):\n");
+    moverBispo(0, 0, 5);
 
-    // Movimento do Bispo (while)
-    printf("\nMovimento do Bispo - Diagonal Superior Direita:\n");
-    int contador_bispo = 0;
-    while (contador_bispo < movimento_bispo) {
-        printf("Cima Direita\n");
-        contador_bispo++;
-    }
+    printf("\nMovimento da Rainha - Esquerda (recursivo):\n");
+    moverRainha(8);
 
-    // Movimento da Rainha (do-while)
-    printf("\nMovimento da Rainha - Esquerda:\n");
-    int contador_rainha = 0;
-    do {
-        printf("Esquerda\n");
-        contador_rainha++;
-    } while (contador_rainha < movimento_rainha);
-
-    // Nível Aventureiro - Movimento do Cavalo com interação do usuário
-    printf("\n--- Movimento do Cavalo Personalizado ---\n");
-
-    int movimentos_l = 1;
-    for (int m = 0; m < movimentos_l; m++) {
-        char direcao1[10], direcao2[10];
-
-        printf("\nDigite a primeira direção (ex: Cima, Baixo): ");
-        scanf("%s", direcao1);
-
-        printf("Digite a segunda direção (ex: Direita, Esquerda): ");
-        scanf("%s", direcao2);
-
-        printf("\nMovimento do Cavalo - L formado por 2 passos em %s e 1 passo em %s:\n", direcao1, direcao2);
-
-        for (int i = 0; i < 2; i++) {
-            printf("%s\n", direcao1);
-        }
-
-        int j = 0;
-        while (j < 1) {
-            printf("%s\n", direcao2);
-            j++;
-        }
-    }
+    moverCavalo();
 
     return 0;
 }
